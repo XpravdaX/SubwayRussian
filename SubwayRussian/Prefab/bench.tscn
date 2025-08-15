@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3pb42ne2dljp"]
+
+[ext_resource type="PackedScene" uid="uid://blia5u22pgiqx" path="res://PRAVDASEMPAI_Asset/Decor/bench.fbx" id="1_t8bhm"]
+[ext_resource type="Shader" uid="uid://c2rxvmj8mi72p" path="res://Shader/shaderTrain.gdshader" id="2_meo43"]
+[ext_resource type="Texture2D" uid="uid://cjt6wh3n0ff4p" path="res://PRAVDASEMPAI_Asset/stantion/texture/stantionNEW.png" id="3_t8bhm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxl6f"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_meo43")
+shader_parameter/albedo_texture = ExtResource("3_t8bhm")
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[node name="bench" type="Node3D"]
+
+[node name="bench" parent="." instance=ExtResource("1_t8bhm")]
+
+[node name="bench" parent="bench" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.366865, 0.388678, 0)
+material_override = SubResource("ShaderMaterial_rxl6f")
+lod_bias = 0.3
+
+[editable path="bench"]

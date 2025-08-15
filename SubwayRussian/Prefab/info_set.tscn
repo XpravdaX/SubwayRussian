@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpt5nrgryssen"]
+
+[ext_resource type="PackedScene" uid="uid://dbfx1326noy74" path="res://PRAVDASEMPAI_Asset/Decor/InfoSt.fbx" id="1_0vras"]
+[ext_resource type="Shader" uid="uid://c2rxvmj8mi72p" path="res://Shader/shaderTrain.gdshader" id="2_4naxq"]
+[ext_resource type="Texture2D" uid="uid://cmemjqefercsg" path="res://PRAVDASEMPAI_Asset/stantion/texture/stantion.png" id="3_3jpgy"]
+[ext_resource type="Shader" uid="uid://dfwdjhtj202dy" path="res://Shader/Light.gdshader" id="4_eiy0k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxl6f"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_4naxq")
+shader_parameter/albedo_texture = ExtResource("3_3jpgy")
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pj6r8"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_eiy0k")
+shader_parameter/glow_color = Color(0.999999, 0.997743, 0.804051, 1)
+shader_parameter/glow_intensity = 1.0
+shader_parameter/glow_falloff = 1.0
+shader_parameter/use_distance_falloff = false
+
+[node name="InfoSet" type="Node3D"]
+
+[node name="InfoSt" parent="." instance=ExtResource("1_0vras")]
+
+[node name="InfoSt" parent="InfoSt" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+lod_bias = 0.3
+surface_material_override/0 = SubResource("ShaderMaterial_rxl6f")
+surface_material_override/1 = SubResource("ShaderMaterial_pj6r8")
+
+[editable path="InfoSt"]

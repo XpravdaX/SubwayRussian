@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=3 uid="uid://dyula6nks74nm"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_o4g6w"]
+points = PackedVector3Array(-1.33912, -1.04732, -0.0709238, 1.24058, 0.968073, 0.05, 1.33912, 1.04506, -0.0709238, 1.33912, -1.04732, -0.0709238, -1.33912, 1.04506, -0.0709238, -1.24058, -0.97034, 0.05, -1.24058, 0.968073, 0.05, 1.24058, -0.97034, 0.05)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_14fly"]
+points = PackedVector3Array(0.0888968, 1.05705, 1.77788, -0.0777794, -1.05418, -1.77788, 0.0888968, -1.05418, -1.77788, -0.0777794, -1.05418, 1.77788, -0.0777794, 1.05705, -1.77788, 0.0888968, 1.05705, -1.77788, 0.0888968, -1.05418, 1.77788, -0.0777794, 1.05705, 1.77788)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ly50x"]
+points = PackedVector3Array(0.0888968, 1.05705, 1.77788, -0.0777794, -1.05418, -1.77788, 0.0888968, -1.05418, -1.77788, -0.0777794, -1.05418, 1.77788, -0.0777794, 1.05705, -1.77788, 0.0888968, 1.05705, -1.77788, 0.0888968, -1.05418, 1.77788, -0.0777794, 1.05705, 1.77788)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ftskw"]
+points = PackedVector3Array(-1.54587, -0.186676, -5.34248, 1.62561, 0.147229, 5.34248, 1.62561, -0.186676, 5.34248, 1.62561, 0.147229, -5.34248, -1.54587, 0.147229, 5.34248, -1.54587, -0.186676, 5.34248, 1.62561, -0.186676, -5.34248, -1.54587, 0.147229, -5.34248)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_07lyo"]
+points = PackedVector3Array(-0.0662921, -1.04269, -0.16166, 0.0640444, 1.04269, 0.164117, -0.0662921, 1.04269, 0.164117, 0.0640444, -1.04269, 0.164117, 0.0640444, 1.04269, -0.16166, -0.0662921, 1.04269, -0.16166, -0.0662921, -1.04269, 0.164117, 0.0640444, -1.04269, -0.16166)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0f8ln"]
+points = PackedVector3Array(-0.0662921, -1.04269, -0.16166, 0.0640444, 1.04269, 0.164117, -0.0662921, 1.04269, 0.164117, 0.0640444, -1.04269, 0.164117, 0.0640444, 1.04269, -0.16166, -0.0662921, 1.04269, -0.16166, -0.0662921, -1.04269, 0.164117, 0.0640444, -1.04269, -0.16166)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_d84qh"]
+points = PackedVector3Array(-1.33912, -1.04732, -0.0709238, 1.24058, 0.968073, 0.05, 1.33912, 1.04506, -0.0709238, 1.33912, -1.04732, -0.0709238, -1.33912, 1.04506, -0.0709238, -1.24058, -0.97034, 0.05, -1.24058, 0.968073, 0.05, 1.24058, -0.97034, 0.05)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4kxhb"]
+points = PackedVector3Array(-0.0662921, -1.04269, -0.894692, 0.0640444, 1.04269, 0.897435, -0.0662921, 1.04269, 0.897435, 0.0640444, -1.04269, 0.897435, 0.0640444, 1.04269, -0.894692, -0.0662921, 1.04269, -0.894692, -0.0662921, -1.04269, 0.897435, 0.0640444, -1.04269, -0.894692)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jxqwb"]
+points = PackedVector3Array(-0.0662921, -1.04269, -0.894692, 0.0640444, 1.04269, 0.897435, -0.0662921, 1.04269, 0.897435, 0.0640444, -1.04269, 0.897435, 0.0640444, 1.04269, -0.894692, -0.0662921, 1.04269, -0.894692, -0.0662921, -1.04269, 0.897435, 0.0640444, -1.04269, -0.894692)
+
+[node name="test" type="Node3D"]
+transform = Transform3D(1, 0, 1.77636e-14, 0, 1, 0, -1.77636e-14, 0, 1, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, 2.98023e-08, 1.07362, -6.15028)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_o4g6w")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, 1.42549, 1.07362, -1.07577)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("ConvexPolygonShape3D_14fly")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, -1.42549, 1.07362, -1.07577)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+shape = SubResource("ConvexPolygonShape3D_ly50x")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, 2.98023e-08, -0.0593631, -1.05965)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D6"]
+shape = SubResource("ConvexPolygonShape3D_ftskw")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, 1.42549, 1.07362, 3.84867)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D7"]
+shape = SubResource("ConvexPolygonShape3D_07lyo")
+
+[node name="StaticBody3D8" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, -1.42549, 1.07362, 3.84867)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D8"]
+shape = SubResource("ConvexPolygonShape3D_0f8ln")
+
+[node name="StaticBody3D9" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, 2.98023e-08, 1.07362, 4.02243)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D9"]
+shape = SubResource("ConvexPolygonShape3D_d84qh")
+
+[node name="StaticBody3D10" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, 1.42549, 1.07362, -5.20628)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D10"]
+shape = SubResource("ConvexPolygonShape3D_4kxhb")
+
+[node name="StaticBody3D11" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, -1.42549, 1.07362, -5.20628)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D11"]
+shape = SubResource("ConvexPolygonShape3D_jxqwb")
+
+[node name="StaticBody3D12" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -2.4869e-14, 0, 1, 1.42549, 1.07362, 3.01581)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D12"]
+shape = SubResource("ConvexPolygonShape3D_4kxhb")
+
+[node name="StaticBody3D13" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -2.4869e-14, 0, 1, -1.42549, 1.07362, 3.01581)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D13"]
+shape = SubResource("ConvexPolygonShape3D_jxqwb")

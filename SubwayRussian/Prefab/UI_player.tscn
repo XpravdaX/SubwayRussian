@@ -1,0 +1,216 @@
+[gd_scene load_steps=13 format=3 uid="uid://b1vnbysfq1h78"]
+
+[ext_resource type="Script" uid="uid://he5h6nwqvm6k" path="res://Script/ui_player.gd" id="1_3wtw4"]
+[ext_resource type="Texture2D" uid="uid://dbyog6dhcq4kj" path="res://UI/crosshair001.png" id="1_i0hn7"]
+[ext_resource type="FontFile" uid="uid://cbe2fkxa5161n" path="res://Font/Digiface (Rus by MarkStarikov2014) Regular.ttf" id="2_pcsks"]
+[ext_resource type="Script" uid="uid://blgdnubkekra4" path="res://Script/Sytem/FPS.gd" id="3_coc4o"]
+[ext_resource type="PackedScene" uid="uid://bj2a6y2ifndob" path="res://Prefab/joystick.tscn" id="4_pcsks"]
+[ext_resource type="Texture2D" uid="uid://cjmawsu3ghrqo" path="res://UI/hands.png" id="5_coc4o"]
+[ext_resource type="Texture2D" uid="uid://b5a3ruxj54hx3" path="res://UI/Jump.png" id="6_q0w5k"]
+[ext_resource type="FontFile" uid="uid://tdel1ysp6bay" path="res://Font/ofont.ru_Delta Block (1).ttf" id="8_e55iv"]
+[ext_resource type="Texture2D" uid="uid://cf63fjo0cnu4x" path="res://UI/song.png" id="8_l6pow"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l8bey"]
+font = ExtResource("2_pcsks")
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_qekww"]
+font = ExtResource("8_e55iv")
+font_size = 18
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4qpo0"]
+font = ExtResource("8_e55iv")
+font_size = 18
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("ui_player", "ui_player_train", "speed_text", "slider")]
+script = ExtResource("1_3wtw4")
+ui_player = NodePath("Control")
+ui_player_train = NodePath("ControlSubway")
+speed_text = NodePath("ControlSubway/ColorRect/speed")
+slider = NodePath("ControlSubway/ColorRect/VSlider")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_i0hn7")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -129.0
+offset_top = 47.0
+offset_right = -58.0
+offset_bottom = 70.0
+grow_horizontal = 0
+text = "FPS"
+label_settings = SubResource("LabelSettings_l8bey")
+script = ExtResource("3_coc4o")
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -210.0
+offset_right = 230.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Joystick" parent="Control2" instance=ExtResource("4_pcsks")]
+position = Vector2(116, 106)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Hands" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -166.0
+offset_top = -234.0
+offset_right = -86.0
+offset_bottom = -154.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("5_coc4o")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Jump" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -251.0
+offset_top = -135.0
+offset_right = -171.0
+offset_bottom = -55.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("6_q0w5k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ControlSubway" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="ControlSubway"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -468.0
+offset_top = -323.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.453106, 0.472366, 0.471573, 0.376471)
+
+[node name="VSlider" type="VSlider" parent="ControlSubway/ColorRect"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = 35.0
+offset_right = -84.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 2
+value = 100.0
+
+[node name="speed" type="Label" parent="ControlSubway/ColorRect"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 31.0
+offset_right = 69.0
+offset_bottom = 54.0
+text = "Скорость: 0 км/ч"
+label_settings = SubResource("LabelSettings_qekww")
+
+[node name="TextureButton" type="TextureButton" parent="ControlSubway/ColorRect"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 58.0
+offset_top = -150.0
+offset_right = 143.0
+offset_bottom = -65.0
+grow_vertical = 0
+texture_normal = ExtResource("8_l6pow")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ControlSubway/ColorRect"]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 69.0
+offset_right = 131.0
+offset_bottom = 92.0
+text = "Левые двери:"
+label_settings = SubResource("LabelSettings_4qpo0")
+
+[node name="LeftDoorCheckBox" type="CheckBox" parent="ControlSubway/ColorRect/Label"]
+layout_mode = 0
+offset_left = 121.0
+offset_right = 145.0
+offset_bottom = 24.0
+
+[node name="Label2" type="Label" parent="ControlSubway/ColorRect"]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 103.0
+offset_right = 131.0
+offset_bottom = 126.0
+text = "Правые двери:"
+label_settings = SubResource("LabelSettings_4qpo0")
+
+[node name="RightDoorCheckBox" type="CheckBox" parent="ControlSubway/ColorRect/Label2"]
+layout_mode = 0
+offset_left = 125.0
+offset_right = 149.0
+offset_bottom = 24.0
+
+[connection signal="pressed" from="Control/Hands" to="." method="_on_hands_pressed"]
+[connection signal="pressed" from="Control/Jump" to="." method="_on_jump_pressed"]
+[connection signal="value_changed" from="ControlSubway/ColorRect/VSlider" to="." method="_on_v_slider_value_changed"]
+[connection signal="toggled" from="ControlSubway/ColorRect/Label/LeftDoorCheckBox" to="." method="_on_left_door_check_box_toggled"]
+[connection signal="toggled" from="ControlSubway/ColorRect/Label2/RightDoorCheckBox" to="." method="_on_right_door_check_box_toggled"]
+
+[editable path="Control2/Joystick"]

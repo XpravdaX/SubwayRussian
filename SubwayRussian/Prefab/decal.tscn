@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dftsrl0ch3vkv"]
+
+[node name="Decal" type="Decal"]
+transform = Transform3D(-4.37197e-08, 1, -4.37135e-08, 0, -4.37135e-08, -1, -1, -4.37155e-08, 1.91096e-15, 0, 0, 0)
+size = Vector3(1.59766, 0.0463867, 1)

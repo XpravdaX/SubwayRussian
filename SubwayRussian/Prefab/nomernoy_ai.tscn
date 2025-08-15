@@ -1,0 +1,493 @@
+[gd_scene load_steps=27 format=3 uid="uid://ck8ghdwu2yk2y"]
+
+[ext_resource type="Script" uid="uid://denw3hgoaori7" path="res://Script/Trains/train.gd" id="1_iv1g4"]
+[ext_resource type="AudioStream" uid="uid://bd5s36gsx4o1k" path="res://Sound/rolling_outside_medium2.wav" id="2_8kxh5"]
+[ext_resource type="AudioStream" uid="uid://do0fupkkqgxbs" path="res://Sound/old.wav" id="3_o34yc"]
+[ext_resource type="AudioStream" uid="uid://clend6xob4632" path="res://Sound/door_open_end5.mp3" id="4_w2cb2"]
+[ext_resource type="AudioStream" uid="uid://dy86n51r661gb" path="res://Sound/door_close_end5.mp3" id="5_y5vu4"]
+[ext_resource type="Script" uid="uid://d4mj6bjtkbcrq" path="res://Script/Trains/pointTrain.gd" id="6_vf4be"]
+[ext_resource type="PackedScene" uid="uid://d3mid8x7gccar" path="res://PRAVDASEMPAI_Asset/Subway/Nomernoy.fbx" id="7_qkrx8"]
+[ext_resource type="Shader" uid="uid://c2rxvmj8mi72p" path="res://Shader/shaderTrain.gdshader" id="8_qst3k"]
+[ext_resource type="Texture2D" uid="uid://b0mvg6xserjqd" path="res://PRAVDASEMPAI_Asset/Subway/texture/Nomernoy.png" id="9_e6cxb"]
+[ext_resource type="Shader" uid="uid://dfwdjhtj202dy" path="res://Shader/Light.gdshader" id="10_a015u"]
+[ext_resource type="Shader" uid="uid://x8swr2qgfoyb" path="res://Shader/grass.gdshader" id="13_600qs"]
+[ext_resource type="Texture2D" uid="uid://iuxnflq155ng" path="res://PRAVDASEMPAI_Asset/Subway/texture/DverNomernoy.png" id="14_un4st"]
+[ext_resource type="Texture2D" uid="uid://nhuih2rkaprs" path="res://PRAVDASEMPAI_Asset/Subway/texture/telega.png" id="15_0g8t8"]
+[ext_resource type="Script" uid="uid://0ij24evnn6ch" path="res://Script/Trains/wagon.gd" id="16_2ib3g"]
+[ext_resource type="PackedScene" uid="uid://bymacmm4xwxex" path="res://Prefab/test.tscn" id="16_offqf"]
+[ext_resource type="PackedScene" uid="uid://cvbq01xfwe0y7" path="res://PRAVDASEMPAI_Asset/Subway/NomernoyWagon.fbx" id="17_6rvpt"]
+[ext_resource type="PackedScene" uid="uid://dyula6nks74nm" path="res://Prefab/test2.tscn" id="17_i408f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2o6a0"]
+size = Vector3(2, 2, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_18nek"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("8_qst3k")
+shader_parameter/albedo_texture = ExtResource("9_e6cxb")
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_odwv0"]
+render_priority = 0
+shader = ExtResource("10_a015u")
+shader_parameter/glow_color = Color(1, 1, 1, 1)
+shader_parameter/glow_intensity = 1.0
+shader_parameter/glow_falloff = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2p884"]
+render_priority = 0
+shader = ExtResource("10_a015u")
+shader_parameter/glow_color = Color(1, 0, 0.0166664, 1)
+shader_parameter/glow_intensity = 1.0
+shader_parameter/glow_falloff = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h4yiq"]
+render_priority = 0
+shader = ExtResource("10_a015u")
+shader_parameter/glow_color = Color(0.84982, 0.813908, 0.655829, 1)
+shader_parameter/glow_intensity = 1.0
+shader_parameter/glow_falloff = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r5j2p"]
+render_priority = 0
+shader = ExtResource("13_600qs")
+shader_parameter/glass_color = Color(0, 0, 0, 0.545098)
+shader_parameter/roughness = 1.0
+shader_parameter/refraction = 0.05
+shader_parameter/metallic = 0.9
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2v4vg"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("8_qst3k")
+shader_parameter/albedo_texture = ExtResource("14_un4st")
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3h670"]
+render_priority = 0
+shader = ExtResource("8_qst3k")
+shader_parameter/albedo_texture = ExtResource("15_0g8t8")
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f68rd"]
+render_priority = 0
+shader = ExtResource("8_qst3k")
+shader_parameter/albedo_texture = ExtResource("15_0g8t8")
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[node name="Nomernoy_Ai" type="Node3D"]
+transform = Transform3D(-4.37111e-08, 0, -0.999996, 0, 0.999993, 0, 0.999993, 0, -4.37112e-08, 0, 0, 0)
+
+[node name="Train" type="PathFollow3D" parent="." node_paths=PackedStringArray("leftDoor1", "leftDoor2", "rightDoor1", "rightDoor2", "audioSourceTrain", "audioSourceDoor", "wagon") groups=["trainPS"]]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, 0, 0)
+progress = 70.0
+script = ExtResource("1_iv1g4")
+max_speed = 18.0
+acceleration = 1.2
+deceleration = 1.6
+leftDoor1 = [NodePath("NomernoyTest2/LeftDoor"), NodePath("../Train2/NomernoyWagon/LeftDoor"), NodePath("../Train3/NomernoyWagon/LeftDoor"), NodePath("../Train4/NomernoyWagon/LeftDoor"), NodePath("../Train5/NomernoyTest2/RightDoor")]
+leftDoor2 = [NodePath("NomernoyTest2/LeftDoor1"), NodePath("../Train2/NomernoyWagon/LeftDoor1"), NodePath("../Train3/NomernoyWagon/LeftDoor1"), NodePath("../Train4/NomernoyWagon/LeftDoor1"), NodePath("../Train5/NomernoyTest2/RightDoor1")]
+rightDoor1 = [NodePath("NomernoyTest2/RightDoor"), NodePath("../Train2/NomernoyWagon/RightDoor"), NodePath("../Train3/NomernoyWagon/RightDoor"), NodePath("../Train4/NomernoyWagon/RightDoor"), NodePath("../Train5/NomernoyTest2/LeftDoor")]
+rightDoor2 = [NodePath("NomernoyTest2/RightDoor1"), NodePath("../Train2/NomernoyWagon/RightDoor1"), NodePath("../Train3/NomernoyWagon/RightDoor1"), NodePath("../Train4/NomernoyWagon/RightDoor1"), NodePath("../Train5/NomernoyTest2/LeftDoor1")]
+audioSourceTrain = NodePath("AudioStreamPlayerTrain")
+audioSourceRun = ExtResource("2_8kxh5")
+audioSourceIdle = ExtResource("3_o34yc")
+audioSourceDoor = NodePath("Door")
+audioSourceDoorOpen = ExtResource("4_w2cb2")
+audioSourceDoorClose = ExtResource("5_y5vu4")
+wagon = [NodePath("../Train2"), NodePath("../Train3"), NodePath("../Train4")]
+
+[node name="Area3D" type="Area3D" parent="Train" node_paths=PackedStringArray("train", "timerStopTrain", "timerDoor")]
+transform = Transform3D(-1, 0, 8.74231e-08, 0, 1, 0, -8.74229e-08, 0, -1, -2.74189e-07, 1.69644, -6.27269)
+script = ExtResource("6_vf4be")
+train = NodePath("..")
+timerStopTrain = NodePath("timerStopTrain")
+timerDoor = NodePath("timerDoor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Train/Area3D"]
+transform = Transform3D(1, 0, 4.40536e-13, 0, 1, 0, 0, 0, 1, 0, -0.210188, 0)
+shape = SubResource("BoxShape3D_2o6a0")
+
+[node name="timerStopTrain" type="Timer" parent="Train/Area3D"]
+
+[node name="timerDoor" type="Timer" parent="Train/Area3D"]
+wait_time = 7.0
+
+[node name="NomernoyTest2" parent="Train" instance=ExtResource("7_qkrx8")]
+transform = Transform3D(-1, 0, 8.74231e-08, 0, 1, 0, -8.74229e-08, 0, -1, -4.73825e-08, 1.314, -1.08398)
+
+[node name="Nomernoy" parent="Train/NomernoyTest2" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_18nek")
+surface_material_override/1 = SubResource("ShaderMaterial_odwv0")
+surface_material_override/2 = SubResource("ShaderMaterial_2p884")
+surface_material_override/3 = SubResource("ShaderMaterial_h4yiq")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Train/NomernoyTest2/Nomernoy" index="0"]
+transform = Transform3D(1, 0, -3.12639e-13, 0, 1, 0, 0, 0, 1, -2.06657e-07, 2.3288, -1.57591)
+light_color = Color(0.85098, 0.815686, 0.654902, 1)
+shadow_enabled = true
+shadow_caster_mask = 4294966273
+omni_range = 4.0
+
+[node name="Glass" parent="Train/NomernoyTest2/Nomernoy" index="1"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="test" parent="Train/NomernoyTest2/Nomernoy" index="2" instance=ExtResource("16_offqf")]
+transform = Transform3D(1, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, 1, 0, -0.039, 0)
+
+[node name="LeftDoor" parent="Train/NomernoyTest2" index="1"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="Glass_001" parent="Train/NomernoyTest2/LeftDoor" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="Dvercabina" parent="Train/NomernoyTest2" index="2"]
+material_override = SubResource("ShaderMaterial_18nek")
+
+[node name="Glass_002" parent="Train/NomernoyTest2/Dvercabina" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="LeftDoor1" parent="Train/NomernoyTest2" index="3"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="GlassDoor_002" parent="Train/NomernoyTest2/LeftDoor1" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="RightDoor" parent="Train/NomernoyTest2" index="4"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="GlassDoor" parent="Train/NomernoyTest2/RightDoor" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="RightDoor1" parent="Train/NomernoyTest2" index="5"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="GlassDoor_001" parent="Train/NomernoyTest2/RightDoor1" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="DverCobina" parent="Train/NomernoyTest2" index="6"]
+material_override = SubResource("ShaderMaterial_18nek")
+
+[node name="Telega" parent="Train/NomernoyTest2" index="7"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="Kaso1" parent="Train/NomernoyTest2/Telega" index="0"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="kaso2" parent="Train/NomernoyTest2/Telega" index="1"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="Telega_001" parent="Train/NomernoyTest2" index="8"]
+material_override = SubResource("ShaderMaterial_f68rd")
+
+[node name="kaso2_001" parent="Train/NomernoyTest2/Telega_001" index="0"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="Kaso1_001" parent="Train/NomernoyTest2/Telega_001" index="1"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="AudioStreamPlayerTrain" type="AudioStreamPlayer3D" parent="Train"]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 9.97048e-07, 0, 22.8098)
+stream = ExtResource("3_o34yc")
+max_distance = 150.0
+
+[node name="Door" type="AudioStreamPlayer3D" parent="Train"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.95634e-07, 0, 6.76331)
+volume_db = 5.0
+max_distance = 45.0
+
+[node name="Train2" type="PathFollow3D" parent="." node_paths=PackedStringArray("target_train") groups=["trainPS"]]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 4.78208e-07, 0, 10.9401)
+progress = 59.08
+script = ExtResource("16_2ib3g")
+target_train = NodePath("../Train")
+
+[node name="NomernoyWagon" parent="Train2" instance=ExtResource("17_6rvpt")]
+transform = Transform3D(-1, 0, -8.74231e-08, 0, 1, 0, 8.74229e-08, 0, -1, 0, 1.314, 0)
+
+[node name="Telega_001" parent="Train2/NomernoyWagon" index="0"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="kaso2_001" parent="Train2/NomernoyWagon/Telega_001" index="0"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="Kaso1_001" parent="Train2/NomernoyWagon/Telega_001" index="1"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="Telega" parent="Train2/NomernoyWagon" index="1"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="kaso2" parent="Train2/NomernoyWagon/Telega" index="0"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="Kaso1" parent="Train2/NomernoyWagon/Telega" index="1"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="RightDoor1" parent="Train2/NomernoyWagon" index="2"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="GlassDoor_001" parent="Train2/NomernoyWagon/RightDoor1" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="RightDoor" parent="Train2/NomernoyWagon" index="3"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="GlassDoor" parent="Train2/NomernoyWagon/RightDoor" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="Nomernoy" parent="Train2/NomernoyWagon" index="4"]
+surface_material_override/0 = SubResource("ShaderMaterial_18nek")
+surface_material_override/1 = SubResource("ShaderMaterial_h4yiq")
+
+[node name="Glass" parent="Train2/NomernoyWagon/Nomernoy" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Train2/NomernoyWagon/Nomernoy" index="1"]
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, 0, 0, 0.999997, -1.37929e-07, 2.3288, -0.00361252)
+light_color = Color(0.85098, 0.815686, 0.654902, 1)
+shadow_enabled = true
+omni_range = 4.0
+
+[node name="test" parent="Train2/NomernoyWagon/Nomernoy" index="2" instance=ExtResource("17_i408f")]
+transform = Transform3D(1, 0, 1.77636e-14, 0, 1, 0, -1.77636e-14, 0, 1, 0, -0.039, 1.149)
+
+[node name="LeftDoor1" parent="Train2/NomernoyWagon" index="5"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="GlassDoor_002" parent="Train2/NomernoyWagon/LeftDoor1" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="LeftDoor" parent="Train2/NomernoyWagon" index="6"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="Glass_001" parent="Train2/NomernoyWagon/LeftDoor" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="Train3" type="PathFollow3D" parent="." node_paths=PackedStringArray("target_train") groups=["trainPS"]]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 0.999999, 0, 3.55271e-15, 0, 1, 9.56855e-07, 0, 21.8902)
+progress = 48.2
+script = ExtResource("16_2ib3g")
+target_train = NodePath("../Train")
+
+[node name="NomernoyWagon" parent="Train3" instance=ExtResource("17_6rvpt")]
+transform = Transform3D(-1, 0, -8.74231e-08, 0, 1, 0, 8.74229e-08, 0, -1, 0, 1.314, 0)
+
+[node name="Telega_001" parent="Train3/NomernoyWagon" index="0"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="kaso2_001" parent="Train3/NomernoyWagon/Telega_001" index="0"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="Kaso1_001" parent="Train3/NomernoyWagon/Telega_001" index="1"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="Telega" parent="Train3/NomernoyWagon" index="1"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="kaso2" parent="Train3/NomernoyWagon/Telega" index="0"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="Kaso1" parent="Train3/NomernoyWagon/Telega" index="1"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="RightDoor1" parent="Train3/NomernoyWagon" index="2"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="GlassDoor_001" parent="Train3/NomernoyWagon/RightDoor1" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="RightDoor" parent="Train3/NomernoyWagon" index="3"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="GlassDoor" parent="Train3/NomernoyWagon/RightDoor" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="Nomernoy" parent="Train3/NomernoyWagon" index="4"]
+surface_material_override/0 = SubResource("ShaderMaterial_18nek")
+surface_material_override/1 = SubResource("ShaderMaterial_h4yiq")
+
+[node name="Glass" parent="Train3/NomernoyWagon/Nomernoy" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Train3/NomernoyWagon/Nomernoy" index="1"]
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, 0, 0, 0.999997, -1.37929e-07, 2.3288, -0.00361252)
+light_color = Color(0.85098, 0.815686, 0.654902, 1)
+shadow_enabled = true
+omni_range = 4.0
+
+[node name="test" parent="Train3/NomernoyWagon/Nomernoy" index="2" instance=ExtResource("17_i408f")]
+transform = Transform3D(1, 0, 1.77636e-14, 0, 1, 0, -1.77636e-14, 0, 1, 0, -0.039, 1.149)
+
+[node name="LeftDoor1" parent="Train3/NomernoyWagon" index="5"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="GlassDoor_002" parent="Train3/NomernoyWagon/LeftDoor1" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="LeftDoor" parent="Train3/NomernoyWagon" index="6"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="Glass_001" parent="Train3/NomernoyWagon/LeftDoor" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="Train4" type="PathFollow3D" parent="." node_paths=PackedStringArray("target_train") groups=["trainPS"]]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 0.999999, 0, -3.90799e-14, 0, 1, 1.43482e-06, 0, 32.8248)
+progress = 37.28
+script = ExtResource("16_2ib3g")
+target_train = NodePath("../Train")
+
+[node name="NomernoyWagon" parent="Train4" instance=ExtResource("17_6rvpt")]
+transform = Transform3D(-1, 0, -8.74231e-08, 0, 1, 0, 8.74229e-08, 0, -1, 0, 1.314, 0)
+
+[node name="Telega_001" parent="Train4/NomernoyWagon" index="0"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="kaso2_001" parent="Train4/NomernoyWagon/Telega_001" index="0"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="Kaso1_001" parent="Train4/NomernoyWagon/Telega_001" index="1"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="Telega" parent="Train4/NomernoyWagon" index="1"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="kaso2" parent="Train4/NomernoyWagon/Telega" index="0"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="Kaso1" parent="Train4/NomernoyWagon/Telega" index="1"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="RightDoor1" parent="Train4/NomernoyWagon" index="2"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="GlassDoor_001" parent="Train4/NomernoyWagon/RightDoor1" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="RightDoor" parent="Train4/NomernoyWagon" index="3"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="GlassDoor" parent="Train4/NomernoyWagon/RightDoor" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="Nomernoy" parent="Train4/NomernoyWagon" index="4"]
+surface_material_override/0 = SubResource("ShaderMaterial_18nek")
+surface_material_override/1 = SubResource("ShaderMaterial_h4yiq")
+
+[node name="Glass" parent="Train4/NomernoyWagon/Nomernoy" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Train4/NomernoyWagon/Nomernoy" index="1"]
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, 0, 0, 0.999997, -1.37929e-07, 2.3288, -0.00361252)
+light_color = Color(0.85098, 0.815686, 0.654902, 1)
+shadow_enabled = true
+omni_range = 4.0
+
+[node name="test" parent="Train4/NomernoyWagon/Nomernoy" index="2" instance=ExtResource("17_i408f")]
+transform = Transform3D(1, 0, 1.77636e-14, 0, 1, 0, -1.77636e-14, 0, 1, 0, -0.039, 1.149)
+
+[node name="LeftDoor1" parent="Train4/NomernoyWagon" index="5"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="GlassDoor_002" parent="Train4/NomernoyWagon/LeftDoor1" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="LeftDoor" parent="Train4/NomernoyWagon" index="6"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="Glass_001" parent="Train4/NomernoyWagon/LeftDoor" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="Train5" type="PathFollow3D" parent="." node_paths=PackedStringArray("target_train") groups=["trainPS"]]
+transform = Transform3D(1, 0, -1.77636e-14, 0, 1, 0, 1.77636e-14, 0, 1, 1.9598e-06, 0, 44.8349)
+progress = 70.0
+script = ExtResource("16_2ib3g")
+target_train = NodePath("../Train")
+
+[node name="NomernoyTest2" parent="Train5" instance=ExtResource("7_qkrx8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.314, 0)
+
+[node name="Nomernoy" parent="Train5/NomernoyTest2" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_18nek")
+surface_material_override/1 = SubResource("ShaderMaterial_odwv0")
+surface_material_override/2 = SubResource("ShaderMaterial_2p884")
+surface_material_override/3 = SubResource("ShaderMaterial_h4yiq")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Train5/NomernoyTest2/Nomernoy" index="0"]
+transform = Transform3D(1, 0, -3.12639e-13, 0, 1, 0, 0, 0, 1, -2.06657e-07, 2.3288, -1.57591)
+light_color = Color(0.85098, 0.815686, 0.654902, 1)
+shadow_enabled = true
+shadow_caster_mask = 4294966273
+omni_range = 4.0
+
+[node name="Glass" parent="Train5/NomernoyTest2/Nomernoy" index="1"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="test" parent="Train5/NomernoyTest2/Nomernoy" index="2" instance=ExtResource("16_offqf")]
+transform = Transform3D(1, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, 1, 0, -0.039, 0)
+
+[node name="LeftDoor" parent="Train5/NomernoyTest2" index="1"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="Glass_001" parent="Train5/NomernoyTest2/LeftDoor" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="Dvercabina" parent="Train5/NomernoyTest2" index="2"]
+material_override = SubResource("ShaderMaterial_18nek")
+
+[node name="Glass_002" parent="Train5/NomernoyTest2/Dvercabina" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="LeftDoor1" parent="Train5/NomernoyTest2" index="3"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="GlassDoor_002" parent="Train5/NomernoyTest2/LeftDoor1" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="RightDoor" parent="Train5/NomernoyTest2" index="4"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="GlassDoor" parent="Train5/NomernoyTest2/RightDoor" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="RightDoor1" parent="Train5/NomernoyTest2" index="5"]
+material_override = SubResource("ShaderMaterial_2v4vg")
+
+[node name="GlassDoor_001" parent="Train5/NomernoyTest2/RightDoor1" index="0"]
+material_override = SubResource("ShaderMaterial_r5j2p")
+
+[node name="DverCobina" parent="Train5/NomernoyTest2" index="6"]
+material_override = SubResource("ShaderMaterial_18nek")
+
+[node name="Telega" parent="Train5/NomernoyTest2" index="7"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="Kaso1" parent="Train5/NomernoyTest2/Telega" index="0"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="kaso2" parent="Train5/NomernoyTest2/Telega" index="1"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="Telega_001" parent="Train5/NomernoyTest2" index="8"]
+material_override = SubResource("ShaderMaterial_f68rd")
+
+[node name="kaso2_001" parent="Train5/NomernoyTest2/Telega_001" index="0"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[node name="Kaso1_001" parent="Train5/NomernoyTest2/Telega_001" index="1"]
+material_override = SubResource("ShaderMaterial_3h670")
+
+[connection signal="body_entered" from="Train/Area3D" to="Train/Area3D" method="_on_body_entered"]
+[connection signal="timeout" from="Train/Area3D/timerStopTrain" to="Train/Area3D" method="_on_timer_stop_train_timeout"]
+[connection signal="timeout" from="Train/Area3D/timerDoor" to="Train/Area3D" method="_on_timer_door_timeout"]
+
+[editable path="Train/NomernoyTest2"]
+[editable path="Train/NomernoyTest2/Nomernoy/test"]
+[editable path="Train2/NomernoyWagon"]
+[editable path="Train2/NomernoyWagon/Nomernoy/test"]
+[editable path="Train3/NomernoyWagon"]
+[editable path="Train3/NomernoyWagon/Nomernoy/test"]
+[editable path="Train4/NomernoyWagon"]
+[editable path="Train4/NomernoyWagon/Nomernoy/test"]
+[editable path="Train5/NomernoyTest2"]
+[editable path="Train5/NomernoyTest2/Nomernoy/test"]
