@@ -1,7 +1,7 @@
 # SubwayRussian
 
 **Симулятор российского метро — исходники, модели, текстуры, код**
-![Название видео](https://www.youtube.com/watch?v=GTtQNwtCi6g)
+[YouTube](https://www.youtube.com/watch?v=GTtQNwtCi6g)
 
 ## О проекте
 
