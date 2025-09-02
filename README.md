@@ -1,8 +1,6 @@
 # SubwayRussian
 
 **Симулятор российского метро — исходники, модели, текстуры, код**
-..
-[YouTube](https://www.youtube.com/watch?v=GTtQNwtCi6g)
 
 ## О проекте
 
@@ -20,6 +18,15 @@
 
 ![Модель поезда](image/Zastavka.png)
 ![Модель поезда2](image/Red.png)
+
+## 📱 Соцсети
+
+Следите за обновлениями и другими проектами:
+
+[![YouTube](https://www.youtube.com/@pravda_sempai)
+[![Rutube](https://rutube.ru/channel/41737058/)
+[![VK](https://vk.com/pravdasempai)
+[![Telegram](https://t.me/PRAVDASEMPAI)
 
 ## Лицензия
 
