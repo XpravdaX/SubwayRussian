@@ -23,10 +23,10 @@
 
 Следите за обновлениями и другими проектами:
 
-[![YouTube](https://www.youtube.com/@pravda_sempai)
-[![Rutube](https://rutube.ru/channel/41737058/)
-[![VK](https://vk.com/pravdasempai)
-[![Telegram](https://t.me/PRAVDASEMPAI)
+[[YouTube](https://www.youtube.com/@pravda_sempai)
+[[Rutube](https://rutube.ru/channel/41737058/)
+[[VK](https://vk.com/pravdasempai)
+[[Telegram](https://t.me/PRAVDASEMPAI)
 
 ## Лицензия
 
